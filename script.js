@@ -3,5 +3,4 @@ document.addEventListener('DOMContentLoaded', () => {
     const projects = [
         { title:'Low Power FPGA Synthesizer' ,desc:'Energy-efficient circuit on FPGA'} 
     ]
-    
 })
