@@ -12,15 +12,15 @@ document.addEventListener('DOMContentLoaded', () => {
               'https://github.com/goyalrahul1516/almond_detection'
       },
       {
-          title: 'Embedded IoT System',
+          title: 'SmartSack : BLE Technology for Food Storage Efficiency',
           description:
               'A smart IoT system for real-time monitoring and control.',
           image:
-              'assets/images/iot-preview.gif',
+              'assets/images/SmartSack_BLE_Technology_for_Food_Storage_Efficiency.gif',
           video:
-              'https://www.youtube.com/embed/example-video-id2',
+              'https://www.youtube.com/embed/GKHhq9ATXk0',
           repoLink:
-              'https://github.com/goyalrahul1516/embedded-iot-system'
+              'https://github.com/goyalrahul1516/Grasp'
       }
   ];
 
