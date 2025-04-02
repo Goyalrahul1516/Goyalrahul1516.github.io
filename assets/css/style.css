@@ -1,115 +1,170 @@
 /* Global Styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+header {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+header h1 {
+  font-size: 2.5rem;
+}
+header p {
+  font-size: 1.2rem;
+}
+
+/* Hero Section */
+.hero {
+  background-color: #f4f4f4;
+  text-align: center;
+  padding: 3rem;
+}
+.hero h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+.hero button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: .8rem 1.5rem;
+  font-size: .9rem;
+  border-radius: .5rem;
+  cursor: pointer;
+  transition: background-color .5s;
+}
+.hero button:hover {
+  background-color: #0056b3;
+}
+
+/* Projects Section */
+#projects {
+  padding: 2rem;
+}
+#projects h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+.project-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s;
+  cursor: pointer;
+  position: relative;
+}
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Preview Overlay */
+.preview-overlay {
+  position: relative;
+  overflow: hidden;
+}
+.preview-overlay img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+.project-card:hover .preview-overlay img {
+  transform: scale(1.1);
+}
+
+/* Modal Styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Blurred background effect */
+  z-index: 1000;
+  overflow-y: auto; /* Enable scrolling if content exceeds height */
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.active {
+  display: flex; /* Show modal */
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 900px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Embedded Video Styling */
+.video-container {
+  position: relative;
+  width: 100%; /* Full width of the modal */
+  padding-top: 56.25%; /* Aspect ratio for 16:9 videos (height/width * 100) */
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width of the container */
+  height: 100%; /* Full height of the container */
+}
+
+/* Smooth Fade-In Animation */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: scale(0.9);
   }
-  body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    color: #333;
-    margin: 0;
-    padding: 0;
+  to {
+      opacity: 1;
+      transform: scale(1);
   }
-  a {
-    text-decoration: none;
-    color: #007BFF;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Header Section */
-  header {
-    background-color: #333;
-    color: white;
-    padding: 1rem;
-    text-align: center;
-  }
-  header h1 {
-    font-size: 2.5rem;
-  }
-  header p {
-    font-size: 1.2rem;
-  }
-  
-  /* Hero Section */
-  .hero {
-    background-color: #f4f4f4;
-    text-align: center;
-    padding: 3rem;
-  }
-  .hero h2 {
-    font-size: 2rem;
-  }
-  .hero p {
-    font-size: 1.2rem;
-  }
-  .hero button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    padding: .8rem 1.5rem;
-    font-size: .9rem;
-    border-radius: .5rem;
-  }
-  .hero button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Projects Section */
-  section {
-    padding: 2rem;
-  }
-  section h2 {
-    text-align: center;
-  }
-  .projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, auto));
-  }
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    padding: 2rem;
-  }
-  .project {
-      box-shadow:.3px rgba(0,0,.15)
-  }
-  .project-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 1rem;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  .project-card img {
-    max-width: 100%;
-    border-radius: 8px;
-  }
-  .project-card iframe {
-    width: 100%;
-    height: 200px;
-    margin-top: 1rem;
-  }
-  .project-card pre {
-    background: #f4f4f4;
-    padding: 1rem;
-    border-radius: 8px;
-    overflow-x: auto;
-  }
-  .project-card a {
-    display: inline-block;
-    margin-top: 1rem;
-    color: #007BFF;
-    text-decoration: none;
-  }
-  .project-card a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Footer Section */
-  footer {
-      margin-top:.5em
-  }
+}
+
+.modal.active .modal-content {
+  animation: fadeIn 0.3s ease-in-out; /* Smooth fade-in animation for modal content */
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: #f4f4f4;
+  margin-top: 2rem;
+}

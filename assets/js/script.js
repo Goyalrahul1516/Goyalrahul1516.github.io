@@ -1,50 +1,90 @@
-// Dynamically add projects to the portfolio
 document.addEventListener('DOMContentLoaded', () => {
   const projects = [
-    {
-      title: 'Low Power FPGA Synthesizer',
-      description: 'An energy-efficient synthesizer circuit implemented on FPGA.',
-      image: 'assets/images/fpga-synthesizer.png',
-      video: 'https://www.youtube.com/embed/example-video-id',
-      codeSnippet: `
-        module Synthesizer(input clk, output reg [7:0] wave);
-        always @(posedge clk) begin
-          wave <= wave + 1;
-        end
-        endmodule
-      `,
-      repoLink: 'https://github.com/goyalrahul1516/fpga-synthesizer'
-    },
-    {
-      title: 'Embedded IoT System',
-      description: 'A smart IoT system for real-time monitoring and control.',
-      image: 'assets/images/iot-system.png',
-      video: 'https://www.youtube.com/embed/example-video-id2',
-      codeSnippet: `
-        #include <WiFi.h>
-        void setup() {
-          WiFi.begin("SSID", "PASSWORD");
-        }
-        void loop() {
-          // IoT logic here
-        }
-      `,
-      repoLink: 'https://github.com/goyalrahul1516/embedded-iot-system'
-    }
+      {
+          title: 'Almond Detection System',
+          description:
+              'Machine learning model for detecting bad almonds using YOLO.',
+          image:
+              'assets/images/Almond_Detection_using_YOLO.gif', // Use a GIF or static image for preview
+          video:
+              'https://www.youtube.com/embed/3r6JDYR8gnI',
+          repoLink:
+              'https://github.com/goyalrahul1516/almond_detection'
+      },
+      {
+          title: 'Embedded IoT System',
+          description:
+              'A smart IoT system for real-time monitoring and control.',
+          image:
+              'assets/images/iot-preview.gif',
+          video:
+              'https://www.youtube.com/embed/example-video-id2',
+          repoLink:
+              'https://github.com/goyalrahul1516/embedded-iot-system'
+      }
   ];
 
   const projectsGrid = document.querySelector('.projects-grid');
+  
+  const modal = document.createElement('div');
+  modal.className = 'modal';
+  
+  // Create modal structure
+  modal.innerHTML = `
+      <div class="modal-content">
+          <span class="modal-close">&times;</span>
+          <div class="modal-body"></div>
+      </div>
+  `;
+  
+  document.body.appendChild(modal);
+
+  // Project card creation
   projects.forEach(project => {
-    const projectCard = document.createElement('div');
-    projectCard.classList.add('project-card');
-    projectCard.innerHTML = `
-      <h3>${project.title}</h3>
-      <p>${project.description}</p>
-      <img src="${project.image}" alt="${project.title}">
-      <iframe src="${project.video}" frameborder="0" allowfullscreen></iframe>
-      <pre><code>${project.codeSnippet}</code></pre>
-      <a href="${project.repoLink}" target="_blank">View Repository</a>
-    `;
-    projectsGrid.appendChild(projectCard);
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      card.innerHTML = `
+          <div class="preview-overlay">
+              <img src="${project.image}" alt="${project.title} Preview">
+          </div>
+          <h3>${project.title}</h3>
+          <p>${project.description}</p>
+      `;
+
+      // Click handler for modal
+      card.addEventListener('click', () => {
+          const modalBody = modal.querySelector('.modal-body');
+          
+          // Populate modal with project details (video only)
+          modalBody.innerHTML = `
+              <h2>${project.title}</h2>
+              <p>${project.description}</p>
+              
+              <!-- Embedded Video -->
+              <div class="video-container">
+                  <iframe src="${project.video}" frameborder="0" allowfullscreen></iframe>
+              </div>
+              
+              <!-- GitHub Link -->
+              <a href="${project.repoLink}" target="_blank" class="repo-link">View GitHub Repository</a>
+          `;
+          
+          // Show modal
+          modal.classList.add('active');
+      });
+
+      projectsGrid.appendChild(card);
+  });
+
+  // Modal close functionality
+  modal.querySelector('.modal-close').addEventListener('click', () => {
+      modal.classList.remove('active');
+  });
+
+  // Close modal when clicking outside content
+  modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+          modal.classList.remove('active');
+      }
   });
 });
